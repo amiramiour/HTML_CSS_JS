@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Details</title>
+	 <meta charset="UTF-8">
+	<script src="../js/recettesDB.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/Style-2.css"  />
+</head>
+<body>
+
+<div class="boy">
+  
+ <h2>Le catalogue des recettes :</h2> 
+
+<div id="informations"><h2 class="h2style">informations</h2></br>
+</div>
+
+
+<div id="ingredients"><h2 class="h2style">ingredients</h2> </br></div>
+
+<div id="instruction"><h2 class="h2style">instruction</h2> </br></div>
+<div id="comments">  <h2 class="h2style">comments</h2> </br></div>
+
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+	const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get('id');
+console.log(myParam-1);
+
+ const container = document.getElementById('informations');
+
+ 
+        const div = document.createElement('div');
+        div.innerHTML = "<a class= let  id="+recettesDB[myParam-1].id +">"+'<img src="../assets/recettes/'+recettesDB[myParam-1].id+'/1.png" >'+ "</a> " + " <br> Nom :  " + recettesDB[myParam-1].name + " <br> category : " + recettesDB[myParam-1].category+ " <br> country : " + recettesDB[myParam-1].country+ " <br> duration :  "  +recettesDB[myParam-1].duration + "<br>Global Rating :  "+parseFloat(parseFloat(recettesDB[myParam-1].comments[0].rating) + parseFloat(recettesDB[myParam-1].comments[1].rating) )/2 + "<div id=img> <img src=../assets/recettes/"+myParam+"/2.png"+">"+"<img src=../assets/recettes/"+myParam+"/3.png"+">"+"<img src=../assets/recettes/"+myParam+"/4.png"+">" +" </div>";
+        container.appendChild(div);
+
+const	 container2 = document.getElementById('ingredients');
+
+        
+
+        for (let i = 0; i < recettesDB[myParam-1].ingredients.length; i++) {
+        const div = document.createElement('div');
+        div.innerHTML = recettesDB[myParam-1].ingredients[i];
+
+
+        container2.appendChild(div);
+      }
+const	 container3 = document.getElementById('instruction');
+
+
+        for (let i = 0; i < recettesDB[myParam-1].instructions.length; i++) {
+        const div = document.createElement('div');
+        div.innerHTML = recettesDB[myParam-1].instructions[i];
+
+
+        container3.appendChild(div);
+      }
+
+
+const	 container4 = document.getElementById('comments');
+
+
+        for (let i = 0; i < recettesDB[myParam-1].comments.length; i++) {
+        const div = document.createElement('div');
+        div.innerHTML = "Nom: " +recettesDB[myParam-1].comments[i].user + "  rating: "+ recettesDB[myParam-1].comments[i].rating +"  content: "+ recettesDB[myParam-1].comments[i].content  ;
+
+
+        container4.appendChild(div);
+      }
+
+
+</script>
+
+
+<script>
+    
+     
+      
+    </script>
+    <section class="footer">
+		<h2 id="info">More info:</h2>
+		<div id="extra">
+			
+			<div id="epart">
+				<img src="../assets/584856a0e0bb315b0f7675a9.png">
+				<h4>: cookingproject@gmail.com</h4>
+			</div>
+			<div id="tpart">
+				<img src="../assets/phone-png-3.png">
+				<h4>:0123456789</h4>
+			</div>
+			<div id="ipart">
+				<img src="../assets/logo-facebook-facebook-logo-transparent-png-pictures-icons-and-0.png">
+				<h4>:Cooking Project</h4>
+			</div>
+		</div>
+	</section>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+	<script src="../js/recettesDB.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/Style-2.css"  />
+	<title>Site De Recette | Categorie </title>
+</head>
+<body>
+<div>
+  <header>
+ <!-- this part is for the select one -->
+<div id="selcrech">
+  <div>
+	<label for="searchInput">Recherche :</label>
+<input type="text" id="searchInput" name="searchInput">
+<button id="searchButton">Rechercher</button>
+  </div>
+
+<select id="my-select">
+
+  <option value="" disabled selected hidden>Chercher par catégorie</option>
+  <option value="Petit déjeuner">Petit déjeuner</option>
+  <option value="Déjeuner">Déjeuner</option>
+  <option value="Dîner">Dîner</option>
+  <option value="Plat principal">Plat principal</option>
+  <option value="Entrée">Entrée</option>
+  <option value="Plat">Plat</option>
+  
+
+</select>
+
+</div>
+
+<br>
+</header>
+<br><br>
+
+<div class="body">
+  
+ <h2>Le catalogue des recettes :</h2> 
+
+<div id="container2"></div>
+
+
+<div id="message"></div>
+
+</div>
+
+</div>
+
+<script>
+    
+  const container = document.getElementById('container2');
+
+  for (let i = 0; i < recettesDB.length; i++) {
+    const div = document.createElement('div');
+    div.innerHTML = "<a class= let  id="+recettesDB[i].id +">"+'<img src="../assets/recettes/'+recettesDB[i].id+'/1.png" >'+ "</a> " + " <br> Nom :  " + recettesDB[i].name + " <br> category : " + recettesDB[i].category+ " <br> country : " + recettesDB[i].country+ " <br> duration :  "  +recettesDB[i].duration + "<br>Global Rating :  "+parseFloat(parseFloat(recettesDB[i].comments[0].rating) + parseFloat(recettesDB[i].comments[1].rating) )/2 ;
+    container.appendChild(div);
+  }
+</script>
+
+<script type="">
+const link = document.getElementsByClassName("let");
+for (let i = 0; i < link.length; i++) {
+    link[i].addEventListener("click",function(event)
+{
+let elementClicke = event.target; 
+let id = this.getAttribute('id');
+window.location.href='details.html?id='+id;
+
+}
+);
+}
+  
+</script>
+<!-- this is the search thingy -->
+<script type="text/javascript">	
+  const searchInput = document.querySelector("#searchInput");
+  const searchButton = document.querySelector("#searchButton");
+  const resultsContainer = document.querySelector("#container2");
+  
+  searchButton.addEventListener("click", () => {
+    const searchValue = searchInput.value.trim().toLowerCase();
+  
+    const filteredRecettes = recettesDB.filter(recette => recette.name.toLowerCase().includes(searchValue));
+  
+    if (filteredRecettes.length > 0) {
+      resultsContainer.innerHTML = ""; // Efface les anciens résultats
+  
+      filteredRecettes.forEach(recette => {
+        const recetteDiv = document.createElement("div");
+        recetteDiv.innerHTML = "<a class= search id="+recette.id +">"+'<img src="../assets/recettes/'+recette.id+'/1.png" >'+ "</a> " + " <br> Nom :  " + recette.name + " <br> category : " + recette.category+ " <br> country : " + recette.country+ " <br> duration :  "  +recette.duration + "<br>Global Rating :  "+parseFloat(parseFloat(recette.comments[0].rating) + parseFloat(recette.comments[1].rating) )/2 ;
+        resultsContainer.appendChild(recetteDiv);
+      });
+      const link = document.getElementsByClassName("search");
+    for (let i = 0; i < link.length; i++) {
+    link[i].addEventListener("click",function(event)
+    {
+    let elementClicke = event.target; 
+    let id = this.getAttribute('id');
+    window.location.href='details.html?id='+id;
+
+}
+);
+}
+  
+    } else {
+      resultsContainer.innerHTML = "<h3>Aucune recette n'a été trouvée dans la base de données.</h3>";
+    }
+  });
+  
+  
+  </script>
+
+  <!-- this is for the select thingy-->
+
+  <script type="text/javascript">
+	// Récupère l'élément select
+const selectElement = document.querySelector('#my-select');
+
+// Ajoute un écouteur d'événement pour le changement de sélection
+selectElement.addEventListener('change', (event) => {
+  // Récupère la valeur sélectionnée
+  const selectedValue = event.target.value.trim().toLowerCase();
+  
+  // Affiche la valeur sélectionnée dans la console
+  console.log(`La valeur sélectionnée est : ${selectedValue}`);
+  filteredRecettes = recettesDB.filter(recette => recette.category.toLowerCase().includes(selectedValue));
+   if (filteredRecettes.length > 0) {
+    resultsContainer.innerHTML = ""; // Efface les anciens résultats
+
+    filteredRecettes.forEach(recette => {
+      const recetteDiv = document.createElement("div");
+      recetteDiv.innerHTML = "<a class= search  id="+recette.id +">"+'<img src="../assets/recettes/'+recette.id+'/1.png" >'+ "</a> " + " <br> Nom :  " + recette.name + " <br> category : " + recette.category+ " <br> country : " + recette.country+ " <br> duration :  "  +recette.duration + "<br>Global Rating :  "+parseFloat(parseFloat(recette.comments[0].rating) + parseFloat(recette.comments[1].rating) )/2 ;
+      resultsContainer.appendChild(recetteDiv);
+    });
+
+    const link = document.getElementsByClassName("search");
+    for (let i = 0; i < link.length; i++) {
+    link[i].addEventListener("click",function(event)
+    {
+    let elementClicke = event.target; 
+    let id = this.getAttribute('id');
+    window.location.href='details.html?id='+id;
+
+}
+);
+}
+  } 
+
+});
+</script>
+
+<script>
+ // Get the search button element
+const searchButtonn = document.getElementById('searchButton');
+
+// Add an event listener to the input field to detect when the enter key is pressed
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    // Trigger the search button's click event
+    searchButtonn.click();
+  }
+});
+</script>
+
+<section class="footer">
+  <h2 id="info">More info:</h2>
+  <div id="extra">
+    
+    <div id="epart">
+      <img src="../assets/584856a0e0bb315b0f7675a9.png">
+      <h4>: cookingproject@gmail.com</h4>
+    </div>
+    <div id="tpart">
+      <img src="../assets/phone-png-3.png">
+      <h4>:0123456789</h4>
+    </div>
+    <div id="ipart">
+      <img src="../assets/logo-facebook-facebook-logo-transparent-png-pictures-icons-and-0.png">
+      <h4>:Cooking Project</h4>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+</body>
+</html>

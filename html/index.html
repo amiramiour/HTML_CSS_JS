@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/Style-2.css"  />
+	<title>	Site de recettes | Acuiel  </title>
+	<script src="../js/recettesDB.js"></script>
+</head>
+<body>
+<header>	
+
+<!-- this part is for the navbar -->
+
+<div class="header">
+<h1>Recette pour vous</h1>
+
+
+<div class="headerbar">
+<h1>Recette pour vous</h1>
+<div class="nav">
+<ul>	
+<a href="#1">
+	<li>Acueil 	</li>
+</a>
+
+<a href="#2">
+	<li>Catégories</li>	
+</a>
+
+
+<a href="#3">
+	<li>Recettes aléatoires		</li>
+</a>
+
+<a href="#4">
+	<li>À propos </li>
+</a>
+
+</ul>
+
+	</div>
+</div>
+
+
+<div class="nav">
+<ul>	
+<a href="#1">
+	<li>Acuiel 	</li>
+</a>
+
+<a href="#2">
+	<li>Catégories</li>	
+</a>
+
+
+<a href="#3">
+	<li>Recettes aléatoires		</li>
+</a>
+
+<a href="#4">
+	<li>À propos </li>
+</a>
+
+</ul>
+
+
+	</div>
+	</div>
+
+</header>
+
+<div class="body">
+	<section class="home" id="1">
+		<div class="intro">
+			<h1>Trouver <span>des Best recette</span> a préparer </h1>
+		<p>Les recettes de cuisine sont des guides détaillés pour la préparation de plats ou de boissons, qui contiennent généralement une liste d'ingrédients nécessaires et des instructions étape par étape sur la manière de les combiner pour obtenir le résultat souhaité.</p>
+		<div>
+		<button type="button" onclick="window.location.href='catalogue.html';">Voire le catalogue</button>
+		</div>
+		</div>
+		<div class="img">
+			<img src="../assets/4.png">
+		</div>
+
+	</section>
+
+	<!-- this is the categorie part of it -->
+	
+	<section class="Categories" id="2">
+	<h2>Categories</h2>
+	<div id="cat">		
+		<div id="catlist">
+		<p> Les recettes peuvent être classées en plusieurs catégories telles que les recettes traditionnelles, végétariennes, de desserts, épicées, rapides et santé. Les recettes traditionnelles sont associées à une région ou à une culture, tandis que les recettes végétariennes sont sans viande ni poisson. Les recettes de desserts sont sucrées, les recettes épicées contiennent des épices et les recettes de cuisine rapide sont faciles à préparer. Les recettes de cuisine santé contiennent des ingrédients sains. Chaque catégorie offre une variété d'options délicieuses et adaptées à différents goûts et besoins alimentaires.nous vous offeront les Categories suivantes :</p>
+		<ol>
+			<li> 1-Le petit Déjeuner</li>
+			<li> 2-Déjeuner</li>
+			<li> 3-Dîner</li>
+			<li> 4-Plat Principal</li>
+			<li> 5-Entrée</li>
+			<li> 6-Plat</li>
+		</ol>
+	
+		</div>
+		<div id="catimg" >
+		<img src="../assets/recipe-cooking-food-clip-art-cooking-recipes-5efd2e9cd4b197bd795b9cd727273a41.png">
+		</div>
+	</div>
+
+		
+	</section>
+<!-- the random thingy part-->
+	<section class="recettealeatoire" id="3">
+		<h2>Recette Aléatoire </h2>
+		<div id="#recettealeatoire2">
+		<div id="para">
+			<P > Nos recettes aléatoires sont choisies au hasard parmi une variété de catégories, <br> de styles de cuisine et d'ingrédients, afin de vous offrir une expérience de cuisine inoubliable. Que vous soyez<br> un novice  en cuisine ou un chef expérimenté, nos recettes aléatoires sont adaptées à tous les niveaux de compétence et à tous les goûts.</P>
+		</div>  
+		<div id="recettealeatoire">
+			
+		</div>
+		</div>
+		<script type="text/javascript" >
+const randomrecettesDB = [];
+
+
+while (randomrecettesDB.length < 3) {
+  const randomNumber = Math.floor(Math.random() * (recettesDB.length));
+  if (!randomrecettesDB.includes(randomNumber)) {
+    randomrecettesDB.push(recettesDB[randomNumber]);
+  }
+}
+
+const container = document.getElementById('recettealeatoire');
+
+for (let i = 0; i < randomrecettesDB.length; i++) {
+  const div = document.createElement('div');
+  div.innerHTML ="<a class= let id="+randomrecettesDB[i].id +">"+'<img src="../assets/recettes/'+randomrecettesDB[i].id+'/1.png" >'+ "</a> "+ "<br>" + " <span> Nom:</span> " + randomrecettesDB[i].name + "<br> <br> <span> Category:</span> "+randomrecettesDB[i].category +"<br>" ;
+  container.appendChild(div);
+}
+		</script>
+		<script type="">
+			const link = document.getElementsByClassName("let");
+			for (let i = 0; i < link.length; i++) {
+				link[i].addEventListener("click",function(event)
+			{
+			let elementClicke = event.target; 
+			let id = this.getAttribute('id');
+			window.location.href='details.html?id='+id;
+			
+			}
+			);
+			}
+			  
+			</script>
+
+<!-- About us partt-->
+	</section>
+	<section class="A propos" id="4">
+		<h2>About Us</h2>
+		<div id="about">
+			<div id="aboutimg">	
+			<img src="../assets/Unknown.jpeg">
+			</div>
+
+			<div id="aboutp">
+			<p> Notre web de cuisine peut contenir une variété de choses notamment des recettes détaillées avec des instructions étape par étape et des photos des astuces pour la préparation et la conservation des aliments, des informations sur les ustensiles de cuisine et les équipements, des critiques de produits de cuisine, des forums de discussion pour les échanges entre passionnés de cuisine,et des blogs culinaires avec des histoires personnelles et des expériences de cuisine.Et plus on va ajouter des autres fonction dans le futur.</p>
+			</div>
+			
+		</div>
+	</section>
+
+	<section class="footer">
+		<h2  id="info">More info:</h2>
+		<div id="extra">
+			
+			<div id="epart">
+				<img src="../assets/584856a0e0bb315b0f7675a9.png">
+				<h4>: cookingproject@gmail.com</h4>
+			</div>
+			<div id="tpart">
+				<img src="../assets/phone-png-3.png">
+				<h4>:0123456789</h4>
+			</div>
+			<div id="ipart">
+				<img src="../assets/logo-facebook-facebook-logo-transparent-png-pictures-icons-and-0.png">
+				<h4>:Cooking Project</h4>
+			</div>
+		</div>
+	</section>
+
+</div>
+
+
+
+<br>
+
+
+</body>
+</html>
